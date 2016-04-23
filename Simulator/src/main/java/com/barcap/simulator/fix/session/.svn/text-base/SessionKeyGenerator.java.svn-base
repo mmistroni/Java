@@ -1,0 +1,17 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.barcap.simulator.fix.session;
+
+/**
+ *
+ * @author marco
+ */
+public interface SessionKeyGenerator {
+
+    public Long generateSessionKey();
+
+
+}

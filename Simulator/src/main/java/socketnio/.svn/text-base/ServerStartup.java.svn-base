@@ -1,0 +1,30 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package socketnio;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.barcap.simulator.nio.server.Startable;
+
+/**
+ *
+ * @author marco
+ */
+public class ServerStartup {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext(
+                new String[] {"classpath:spring-config.xml",
+                "classpath:spring-fix.xml",
+                "classpath:spring-oms.xml"});
+        Startable server = (Startable) context.getBean("server");
+        server.startup();
+    }
+
+}

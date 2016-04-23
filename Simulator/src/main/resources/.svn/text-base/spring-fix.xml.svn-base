@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+        
+        <bean id="fixAdapterFactory" class="com.barcap.simulator.fix.FixAdapterFactoryImpl">
+            <property name="fixEngine" ref="fixEngine"/>
+        </bean>
+
+
+        <bean id="fixEngine" class="com.barcap.simulator.fix.FixEngineImpl">
+            <property name="sessionManager" ref="sessionManager"/>
+        </bean>
+
+        <bean id="sessionManager" class="com.barcap.simulator.fix.session.FixSessionManagerImpl">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+
+
+        <bean id="sessionFactory" class="com.barcap.simulator.fix.session.FixSessionFactoryImpl">
+            <property name="fixValidator" ref="fixValidator"/>
+            <property name="sessionStaticDataManager" ref="sessionStaticDataManager"/>
+            <property name="messageStoreFactory" ref="messageStoreFactory"/>
+            <property name="messageHandlerFactory" ref="messageHandlerFactory"/>
+            <property name="sessionKeyGenerator" ref="sessionKeyGenerator"/>
+        </bean>
+
+        <bean id="messageStoreFactory" class="com.barcap.simulator.fix.session.MessageStoreFactoryImpl"/>
+
+        <bean id="fixValidator" class="com.barcap.simulator.fix.validator.FixValidatorImpl"/>
+
+        <bean id="sessionStaticDataManager" class="com.barcap.simulator.nio.server.config.SessionStaticDataManagerImpl"/>
+
+        <bean id="messageHandlerFactory" class="com.barcap.simulator.fix.session.MessageHandlerFactoryImpl">
+            <property name="participantRouter" ref="imsParticipantRouter"/>
+        </bean>
+
+        <bean id="sessionKeyGenerator" class="com.barcap.simulator.fix.session.SessionKeyGeneratorImpl"/>
+
+        <bean id="imsParticipantRouter" class="com.barcap.simulator.fix.router.ImsParticipantRouter"/>
+
+
+
+</beans>

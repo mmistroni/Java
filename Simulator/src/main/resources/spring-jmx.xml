@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+        <bean id="jmxServer"
+		class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="defaultDomain" value="com.worldcorpservices.core" />
+	</bean>
+
+
+	<bean id="assembler"
+		class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+		<property name="attributeSource" ref="attributeSource" />
+	</bean>
+
+	<bean id="htmlAdaptor" class="com.sun.jdmk.comm.HtmlAdaptorServer"
+		init-method="start" destroy-method="stop">
+		<property name="port" value="5555" />
+	</bean>
+
+
+
+	<bean id="mbeanExporter"
+		class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="adaptor:name=htmlAdaptor"
+					value-ref="htmlAdaptor" />
+			</map>
+		</property>
+		<property name="assembler" ref="assembler" />
+		<property name="autodetectModeName"
+			value="AUTODETECT_ASSEMBLER" />
+		<property name="namingStrategy" ref="namingStrategy" />
+		<property name="server" ref="jmxServer" />
+	</bean>
+
+
+	<bean id="attributeSource"
+		class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource" />
+
+	<bean id="namingStrategy"
+		class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+		<property name="attributeSource" ref="attributeSource" />
+	</bean>
+</beans>

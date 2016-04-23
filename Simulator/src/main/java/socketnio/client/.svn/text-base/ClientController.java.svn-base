@@ -1,0 +1,18 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package socketnio.client;
+
+/**
+ *
+ * @author marco
+ */
+public interface ClientController {
+
+    void sendMessage(String message);
+
+    void start();
+
+}

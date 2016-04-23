@@ -1,0 +1,21 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.barcap.simulator.fix.session;
+
+import com.barcap.simulator.oms.Order;
+
+/**
+ *
+ * @author marco
+ */
+public interface FixOrderRequest {
+
+    public Order getOrder();
+    
+    public FixOrderRequestType getOrderRequestType();
+
+
+}

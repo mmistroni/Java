@@ -1,0 +1,17 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.barcap.simulator.fix.session;
+
+/**
+ *
+ * @author marco
+ */
+public enum FixOrderRequestType {
+    ORDER_CANCEL_REQUEST,
+    ORDER_REPLACE_REQUEST,
+    ORDER_STATUS_REQUEST,
+    NEW_ORDER_REQUEST
+}
